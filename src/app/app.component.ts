@@ -19,6 +19,17 @@ export class AppComponent implements OnInit {
     //     this.aeropuertos=data;
     //   }
     // )
+    this.aeropuertos=[
+      {
+        iata:'1',
+        airport:'Mariscal Sucre',
+        city:'Cuenca',
+        state:'Azuay',
+        country:'Ecuador',
+        lat:82.24,
+        long:58.8
+      }
+    ]
   }
 
   aeropuertos:Aeropuerto[]=[];
@@ -55,10 +66,11 @@ export class AppComponent implements OnInit {
 
  
   actualizarAeropuerto(){
+    this.guardandoCambios=true;
     this.aeropuertoService.putAeropuerto(this.aeropuertoForm.value).subscribe(
       data=>{
         console.log(data);
-        
+        this.guardandoCambios=false;
       }
     )
   }
